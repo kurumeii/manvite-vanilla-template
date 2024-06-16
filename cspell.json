@@ -1,0 +1,22 @@
+{
+  "version": "0.2",
+  "ignorePaths": [],
+  "dictionaryDefinitions": [
+    {
+      "name": "library",
+      "path": "./src/assets/dictionary/lib.txt",
+      "description": "A list of library related words"
+    },
+    {
+      "name": "misc",
+      "path": "./src/assets/dictionary/misc.txt",
+      "description": "A list of project related words"
+    }
+  ],
+  "dictionaries": ["library", "misc"],
+  "cache": {
+    "cacheStrategy": "metadata",
+    "cacheFormat": "universal",
+    "useCache": true
+  }
+}

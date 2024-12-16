@@ -1,27 +1,34 @@
 import { fileURLToPath } from "node:url"
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin"
 import react from "@vitejs/plugin-react-swc"
-import Unfonts from "unplugin-fonts/vite"
-import { defineConfig } from "vite"
-import biomePlugin from "vite-plugin-biome"
+import UnpluginFont from "unplugin-fonts/vite"
+import { defineConfig, loadEnv } from "vite"
 
-export default defineConfig({
-  plugins: [
-    react(),
-    biomePlugin({
-      mode: "check",
-      applyFixes: true,
-    }),
-    vanillaExtractPlugin(),
-    Unfonts({
-      fontsource: {
-        families: ["Inter Variable", "Fira Mono"],
-      },
-    }),
-  ],
-  resolve: {
-    alias: {
-      "@": fileURLToPath(new URL("src/", import.meta.url)),
+export default defineConfig(({ command, mode }) => {
+  console.log(`configuring vite with command: ${command}, mode: ${mode}`)
+  const env = loadEnv(mode, process.cwd(), "VITE_")
+  return {
+    plugins: [
+      react(),
+      vanillaExtractPlugin(),
+      UnpluginFont({
+        fontsource: {
+          families: ["Fira Mono", "Inter Variable"],
+        },
+      }),
+    ],
+    envDir: process.cwd(),
+    server: {
+      strictPort: true,
+      port: Number.parseInt(env.VITE_PORT),
     },
-  },
+    resolve: {
+      alias: [
+        {
+          find: "@",
+          replacement: fileURLToPath(new URL("./src", import.meta.url)),
+        },
+      ],
+    },
+  }
 })

@@ -1,8 +1,10 @@
 pre-commit:
   parallel: true
   commands:
-    check:
-      run: pnpm dlx biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
-    code-check:
-      run: pnpm dlx cspell "./src/**.{ts,tsx,js,jsx}"
-    
+    spell-check:
+      glob: "*.{js,ts,jsx,tsx}"
+      run: pnpm dlx cspell {staged_files}
+    code-linting:
+      glob: "*.{js,ts,jsx,tsx}"
+      run: pnpm dlx @biomejs/biome check --write --unsafe --no-errors-on-unmatched {staged_files}
+      stage_fixed: true

@@ -6,13 +6,18 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "correctness": {
+        "noUnusedVariables": "error",
+        "noUnusedImports": "warn"
+      },
+      "complexity": {
+        "noForEach": "off"
+      }
     }
   },
   "formatter": {
     "enabled": true,
-    "formatWithErrors": true,
-    "lineEnding": "lf",
     "indentStyle": "space"
   },
   "javascript": {

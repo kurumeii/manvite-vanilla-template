@@ -1,6 +1,11 @@
 {
   "version": "0.2",
-  "ignorePaths": [],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/*.lock",
+    "**/package-lock.json"
+  ],
   "dictionaryDefinitions": [
     {
       "name": "library",
@@ -18,5 +23,12 @@
     "cacheStrategy": "metadata",
     "cacheFormat": "universal",
     "useCache": true
-  }
+  },
+  "language": "en, vi",
+  "import": [
+    "@cspell/dict-css/cspell-ext.json",
+    "@cspell/dict-html/cspell-ext.json",
+    "@cspell/dict-typescript/cspell-ext.json",
+    "@cspell/dict-vi-vn/cspell-ext.json"
+  ]
 }
